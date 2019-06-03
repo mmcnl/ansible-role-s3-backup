@@ -4,7 +4,7 @@
     pkg: awscli
     cache_valid_time: 86400 # 1 day
 
-- name: setup hourly cron job to sync local backups to S3
+- name: setup hourly cron job to sync from local source to S3
   template:
     src: s3-backup-cron.j2
     dest: /etc/cron.hourly/s3-backup
