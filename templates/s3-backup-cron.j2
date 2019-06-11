@@ -10,4 +10,6 @@ echo "$0:"
 export AWS_ACCESS_KEY_ID={{ s3_backup_access_key_id }}
 export AWS_SECRET_ACCESS_KEY={{ s3_backup_access_key }}
 
-/usr/bin/aws s3 sync --no-progress {{ s3_backup_source }} s3://{{ s3_backup_bucket }}
+{% for source in s3_backup_sources | reject('in', '') %}
+/usr/bin/aws s3 sync --no-progress {{ source }} s3://{{ s3_backup_bucket }}{{ source }}
+{% endfor %}
